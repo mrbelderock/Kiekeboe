@@ -12,13 +12,14 @@ function buildList (participants) {
         const li = document.createElement("li")
         li.textContent = participant
         fragment.appendChild(li)
+        fragment.appendChild(deleteButton())
     }
     document.querySelector(".list").appendChild(fragment)
     createInput()
 }
 
 async function getParticipants() {
-    const response = await fetch("https://kiekeboe.deno.dev/", {
+    const response = await fetch("http://127.0.0.1:8000", {
         method: "POST", 
         body: JSON.stringify({function: "getParticipants"})
     })
@@ -34,8 +35,9 @@ async function addParticipant() {
     const li = document.createElement("li")
     li.textContent = input
     document.querySelector(".list").appendChild(li)
+    document.querySelector(".list").appendChild(deleteButton())
     createInput()  
-    await fetch("https://kiekeboe.deno.dev/", {
+    await fetch("http://127.0.0.1:8000", {
         method: "POST", 
         body: JSON.stringify({function: "addParticipant", name: `${input}`})
     })  
@@ -44,7 +46,7 @@ async function addParticipant() {
 async function deleteParticipants() {
     document.querySelector(".list").textContent = ""
     createInput()
-    await fetch("https://kiekeboe.deno.dev/", {
+    await fetch("http://127.0.0.1:8000", {
         method: "POST",
         body: JSON.stringify({function: "deleteParticipants"})
     })
@@ -63,4 +65,11 @@ function createInput() {
 function rotateLogo() {
     document.querySelector(".site-name").classList.add("rotate")
     setTimeout(() => document.querySelector(".site-name").classList.remove("rotate"), 1000)
+}
+
+function deleteButton() {
+    const deletebutton = document.createElement("div")
+    deletebutton.setAttribute("class","gg-remove")
+    setTimeout(() => deletebutton.classList.add("appeared"), 10)
+    return deletebutton
 }
