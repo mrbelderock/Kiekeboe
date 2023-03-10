@@ -19,9 +19,10 @@ function buildList (participants) {
 }
 
 async function getParticipants() {
+    const response = await fetch("https://kiekeboe.deno.dev", {
         method: "POST", 
         body: JSON.stringify({function: "getParticipants"})
-    }
+    })
     participants = await response.json()
     buildList(participants)
 }
@@ -36,17 +37,19 @@ async function addParticipant() {
     document.querySelector(".list").appendChild(li)
     document.querySelector(".list").appendChild(deleteButton())
     createInput()  
+    await fetch("https://kiekeboe.deno.dev", {
         method: "POST", 
         body: JSON.stringify({function: "addParticipant", name: `${input}`})
-    }
+    })  
 }
 
 async function deleteParticipants() {
     document.querySelector(".list").textContent = ""
     createInput()
+    await fetch("https://kiekeboe.deno.dev", {
         method: "POST",
         body: JSON.stringify({function: "deleteParticipants"})
-    }
+    })
 }
 
 function deleteParticipant(event) {
