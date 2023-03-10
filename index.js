@@ -19,7 +19,7 @@ function buildList (participants) {
 }
 
 async function getParticipants() {
-    const response = await fetch("http://127.0.0.1:8000", {
+    const response = await fetch("https://kiekeboe.deno.dev/", {
         method: "POST", 
         body: JSON.stringify({function: "getParticipants"})
     })
@@ -37,7 +37,7 @@ async function addParticipant() {
     document.querySelector(".list").appendChild(li)
     document.querySelector(".list").appendChild(deleteButton())
     createInput()  
-    await fetch("http://127.0.0.1:8000", {
+    await fetch("https://kiekeboe.deno.dev/", {
         method: "POST", 
         body: JSON.stringify({function: "addParticipant", name: `${input}`})
     })  
@@ -46,7 +46,7 @@ async function addParticipant() {
 async function deleteParticipants() {
     document.querySelector(".list").textContent = ""
     createInput()
-    await fetch("http://127.0.0.1:8000", {
+    await fetch("https://kiekeboe.deno.dev/", {
         method: "POST",
         body: JSON.stringify({function: "deleteParticipants"})
     })
