@@ -8,7 +8,7 @@ function showInput(event) {
 
 function buildList (participants) {
     const fragment = new DocumentFragment
-    for (participant of participants) {
+    for (const participant of participants) {
         const li = document.createElement("li")
         li.textContent = participant
         fragment.appendChild(li)
