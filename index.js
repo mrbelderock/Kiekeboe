@@ -19,7 +19,6 @@ function buildList (participants) {
 }
 
 async function getParticipants() {
-    const response = await fetch("https://kiekeboe.deno.dev/", {
         method: "POST", 
         body: JSON.stringify({function: "getParticipants"})
     })
@@ -37,7 +36,6 @@ async function addParticipant() {
     document.querySelector(".list").appendChild(li)
     document.querySelector(".list").appendChild(deleteButton())
     createInput()  
-    await fetch("https://kiekeboe.deno.dev/", {
         method: "POST", 
         body: JSON.stringify({function: "addParticipant", name: `${input}`})
     })  
@@ -46,10 +44,14 @@ async function addParticipant() {
 async function deleteParticipants() {
     document.querySelector(".list").textContent = ""
     createInput()
-    await fetch("https://kiekeboe.deno.dev/", {
         method: "POST",
         body: JSON.stringify({function: "deleteParticipants"})
     })
+}
+
+function deleteParticipant(event) {
+    event.target.previousElementSibling.remove()
+    event.target.remove()
 }
 
 function createInput() {
@@ -71,5 +73,6 @@ function deleteButton() {
     const deletebutton = document.createElement("div")
     deletebutton.setAttribute("class","gg-remove")
     setTimeout(() => deletebutton.classList.add("appeared"), 10)
+    deletebutton.addEventListener("click", deleteParticipant)
     return deletebutton
 }
