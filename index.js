@@ -21,7 +21,7 @@ function buildList (participants) {
 async function getParticipants() {
         method: "POST", 
         body: JSON.stringify({function: "getParticipants"})
-    })
+    }
     participants = await response.json()
     buildList(participants)
 }
@@ -38,7 +38,7 @@ async function addParticipant() {
     createInput()  
         method: "POST", 
         body: JSON.stringify({function: "addParticipant", name: `${input}`})
-    })  
+    }
 }
 
 async function deleteParticipants() {
@@ -46,7 +46,7 @@ async function deleteParticipants() {
     createInput()
         method: "POST",
         body: JSON.stringify({function: "deleteParticipants"})
-    })
+    }
 }
 
 function deleteParticipant(event) {
