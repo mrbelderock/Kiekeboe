@@ -187,7 +187,7 @@ nav {
     background-color: rgb(255, 254, 233);
     opacity: 0;
     cursor: pointer;
-    transition: opacity 800ms ease
+    transition: opacity 800ms ease 
 }
 
 .gg-remove::before {
@@ -201,10 +201,26 @@ nav {
     top: 9px;
     left: 5px;
     opacity: 0;
-    transition: opacity 800ms ease
+    transition: opacity 800ms ease 
 }
 
 .gg-remove.appeared,
 .gg-remove.appeared::before {
     opacity: 0.8
+}
+
+.gg-remove:hover {
+    border-width: 2px;
+    opacity: 1;
+}
+
+.gg-remove:hover::before {
+    height: 2px;
+    top: 8px;
+    left: 4px
+}
+
+.gg-remove:active {
+    transform: translateY(0.1rem);
+    background-color: rgba(209, 122, 0, 0.8);
 }

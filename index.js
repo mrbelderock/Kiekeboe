@@ -19,7 +19,7 @@ function buildList (participants) {
 }
 
 async function getParticipants() {
-    const response = await fetch("https://kiekeboe.deno.dev", {
+    const response = await fetch("http://127.0.0.1:8000", {
         method: "POST", 
         body: JSON.stringify({function: "getParticipants"})
     })
@@ -52,9 +52,15 @@ async function deleteParticipants() {
     })
 }
 
-function deleteParticipant(event) {
-    event.target.previousElementSibling.remove()
-    event.target.remove()
+async function deleteParticipant(event) {
+    setTimeout(() => {
+        event.target.previousElementSibling.remove()
+        event.target.remove()
+    }, 200)
+    await fetch("https://kiekeboe.deno.dev", {
+        method: "POST",
+        body: JSON.stringify({function: "deleteParticipant", name: event.target.previousElementSibling.textContent})
+    })
 }
 
 function createInput() {

@@ -24,6 +24,13 @@ const deleteParticipants: POST_Route_Handler = function(body) {
     return new Response(null,{status: 200})
 }
 
+const deleteParticipant: POST_Route_Handler = function(body) {
+    console.log(body.name)
+    participants.splice(participants.indexOf(body.name))
+    console.log(participants)
+    return new Response(null,{status: 200})
+}
+
 const GET_home: GET_Route = async function (req, filename) {
     const file = await Deno.open(filename)
     const headers = new Headers({
@@ -39,8 +46,9 @@ const POST_home: POST_Route = async function (req) {
     else if (body.function === "addParticipant") {
         return addParticipant(body)}
     else if (body.function === "deleteParticipants") {
-        return deleteParticipants(body)
-    }
+        return deleteParticipants(body)}
+    else if (body.function === "deleteParticipant") {
+        return deleteParticipant(body)}
     else return new Response(null)
 }
 
