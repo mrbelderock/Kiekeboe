@@ -120,7 +120,7 @@ nav {
 
 .list { 
     display: grid;
-    grid-template-columns: 1fr min-content;
+    grid-template-columns: 1fr 2rem;
     row-gap: 0.5rem;
     place-items: center;
     list-style: none;
@@ -137,7 +137,8 @@ nav {
     letter-spacing: 0.05rem;
     padding: 0.4rem;
     text-align: center;
-    width: 100%
+    width: 100%;
+    cursor: default;
 }
 
 .input {
