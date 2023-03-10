@@ -19,7 +19,7 @@ function buildList (participants) {
 }
 
 async function getParticipants() {
-    const response = await fetch("http://127.0.0.1:8000", {
+    const response = await fetch("https://kiekeboe.deno.dev", {
         method: "POST", 
         body: JSON.stringify({function: "getParticipants"})
     })
